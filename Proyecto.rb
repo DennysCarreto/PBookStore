@@ -25,7 +25,7 @@ pila = {
   size: 0
 }
 
-def librosporautor(nombre,pila)#complemento
+def librosporautor(nombre,pila)
   libro = pila[:tope]
   conta=1
   unidad=0
@@ -33,10 +33,8 @@ def librosporautor(nombre,pila)#complemento
     if libro[:autor]==nombre
       unidad+=1
     end
-
     if  libro[:siguiente]==nil
       conta=pila[:size]+1
-
     else
       nuevo_elemento = libro[:siguiente]
       libro = nuevo_elemento
@@ -135,7 +133,7 @@ def mostrar_autor(cola,pila)
 
     end
   end
-    
+
 end
 
 #Registro de autor
@@ -288,7 +286,7 @@ def buscar_libro1(pila)
   if b==1
     limpiar_pantalla
     tabla = Terminal::Table.new do |t|
-      t.headings = ['Nombre','unidades','ISBN','Precio','Unidades']
+      t.headings = ['Nombre','Autor','ISBN','Precio','Unidades']
       t.add_row([
         libro[:nombre],
         libro[:autor],
@@ -379,13 +377,13 @@ def Reg_New_libro(pila,cola)
                 puts "Perteneciente al autor -#{nodo_libro[:autor]}-"
                 puts "Ingrese un ISBN DIFERENTE!!!"
               end
-  
+
             end
-  
+
           end
       end
     end
-    
+
   end
 
 
@@ -405,49 +403,49 @@ def menuadmin(pila,cola)
         #uso de case para crear el menu
         opciones = gets.chomp
         limpiar_pantalla
-        case opciones 
-        when '1'  
+        case opciones
+        when '1'
             puts"Reg de Nue. Libros"
             Reg_New_libro(pila,cola)
             #Limpiar pantalla y una pausa
             gets()
             limpiar_pantalla
-        when '2'  
+        when '2'
             puts"Reg. de Autores"
             nuevo_autor(cola)
             #Limpiar pantalla y una pausa
             gets()
             limpiar_pantalla
-        when '3'  
+        when '3'
             puts"Listado de Libros"
-            buscar_libro1(pila)
-            #Limpiar pantalla y una pausa
-            gets()
-            limpiar_pantalla
-        when '4' 
-            puts"Listado de Autores"
-            mostrar_autor(cola,pila)
-            #Limpiar pantalla y una pausa
-            gets()
-            limpiar_pantalla
-        when '5' 
-            puts"Buscar Libro"
-            lista_de_autores(cola,pila)
-            #Limpiar pantalla y una pausa
-            gets()
-            limpiar_pantalla
-        when '6' 
-            puts"Buscar Autor"
             lista_libros(pila)
             #Limpiar pantalla y una pausa
             gets()
             limpiar_pantalla
-        when '7'  
+        when '4'
+            puts"Listado de Autores"
+            lista_de_autores(cola,pila)
+            #Limpiar pantalla y una pausa
+            gets()
+            limpiar_pantalla
+        when '5'
+            puts"Buscar Libro"
+            buscar_libro1(pila)
+            #Limpiar pantalla y una pausa
+            gets()
+            limpiar_pantalla
+        when '6'
+            puts"Buscar Autor"
+            mostrar_autor(cola,pila)
+            #Limpiar pantalla y una pausa
+            gets()
+            limpiar_pantalla
+        when '7'
             puts"Menu 1 Terminado"
             #Limpiar pantalla y una pausa
             gets()
             limpiar_pantalla
-        else novalido 
+        else novalido
         end
 
     end while (opciones!='7')
@@ -466,31 +464,31 @@ def menucontrol()
         #uso de case para crear el menu
         opciones = gets.chomp
         limpiar_pantalla
-        
-        case opciones 
-        when '1' 
+
+        case opciones
+        when '1'
             puts'Reg. Una Venta'
             #Limpiar pantalla y una pausa
             gets()
             limpiar_pantalla
-        when '2'   
+        when '2'
             puts "Buscar una Venta"
             #Limpiar pantalla y una pausa
             gets()
             limpiar_pantalla
-        when '3'   
+        when '3'
             puts "Listado de Ventas"
             #Limpiar pantalla y una pausa
             gets()
             limpiar_pantalla
-        when '4' 
+        when '4'
             puts "Menu 2 Terminado "
             #Limpiar pantalla y una pausa
             gets()
             limpiar_pantalla
-        else novalido 
+        else novalido
         end
-          
+
     end while (opciones!='4')
 end
 
@@ -504,16 +502,16 @@ begin
     print 'Ingrese una opcion: '
     opciones = gets.chomp
     #uso de case para crear el menu
-    case opciones 
-    when '1' 
+    case opciones
+    when '1'
         limpiar_pantalla
         menuadmin(pila,cola)
-    when '2'   
+    when '2'
         limpiar_pantalla
         menucontrol
-    when '3' 
+    when '3'
         puts "Programa Terminado"
-    else novalido 
+    else novalido
     end
-        
+
 end while (opciones!='3')
