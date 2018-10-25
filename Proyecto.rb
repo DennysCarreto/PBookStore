@@ -95,7 +95,7 @@ def mostrar_autor(cola,pila)
     if elemento=='***El autor no existe en el sistema***'
       puts elemento
     else
-      if elemento[:libros]==0#cambio
+      if elemento[:libros]==0
         tabla = Terminal::Table.new do |t|
         t.title = "Nombre Autor: #{elemento[:nombre]}"
         t.add_row(['El autor no tiene ningun libro'])
@@ -170,7 +170,7 @@ def nuevo_autor(cola)
 
     end
     if b>0                                 #Cuando se ingresa el mismo autor
-      puts '***ya existe un autor con este nombre***'
+      puts 'Existe un Autor con el mismo Nombre'
     else                                      #cuando no existe crea uno nuevo autor
       autor = {
         nombre:nombre_autor,
@@ -187,14 +187,14 @@ def nuevo_autor(cola)
     end
     end
   else
-    puts "\n***Ya no tiene espacio para mas autores***"
+    puts "\nLista De Autores Llenas"
 
   end
 end
 # Lista de autores
 def lista_de_autores(cola,pila)
   if cola[:max]==5
-    puts "***No hay autores en el sistema***"
+    puts "No se tienen autores registrados"
   else
     tabla = Terminal::Table.new do |t|
     t.title = 'Lista De Autores'
@@ -329,13 +329,13 @@ def Reg_New_libro(pila,cola)
               siguiente: nil
             }
             pila[:tope]=libro
-            pila[:esta_vacio]=false#cambio
-            pila[:size]+=1#suma de libros
+            pila[:esta_vacio]=false
+            pila[:size]+=1
             nodo_autor[:libros]+=1
           else
             print 'Ingrese el ISBN: '
             isbn = gets.chomp
-            nodo_libro = buscar_libro(pila,isbn)#cambio pila
+            nodo_libro = buscar_libro(pila,isbn)
             if nodo_libro == 'no existe el libro'
             print 'Ingrese el nombre del libro: '
             nombre_libro = gets.chomp
@@ -349,10 +349,10 @@ def Reg_New_libro(pila,cola)
               se_imprime:'si',
               siguiente: nil
             }
-            tope = pila[:tope]#cambio
+            tope = pila[:tope]
             libro[:siguiente] = tope
             pila[:tope] = libro
-            pila[:size]+=1 #suma de libros
+            pila[:size]+=1
             nodo_autor[:libros]+=1
             else
               if nombre_autor == nodo_libro[:autor]
@@ -367,10 +367,10 @@ def Reg_New_libro(pila,cola)
               se_imprime: 'no',
               siguiente: nil
               }
-              tope = pila[:tope]#cambio
+              tope = pila[:tope]
               libro[:siguiente] = tope
               pila[:tope] = libro
-              pila[:size]+=1 #suma de libros
+              pila[:size]+=1
               nodo_autor[:libros]+=1
               else
                 puts "El ISBN #{isbn} le pertene al  libro -#{nodo_libro[:nombre]}-"
