@@ -1,4 +1,5 @@
-require 'byebug'
+require 'rubygems'
+
 require 'terminal-table'
 
 def limpiar_pantalla
@@ -25,7 +26,9 @@ pila = {
   size: 0
 }
 
+
 def librosporautor(nombre,pila)
+  
   libro = pila[:tope]
   conta=1
   unidad=0
@@ -43,6 +46,7 @@ def librosporautor(nombre,pila)
   end
   return unidad
 end
+
 # cant Unidades
 def ver_unidades(pila,isbn)
   libro = pila[:tope]
@@ -88,6 +92,7 @@ end
 def mostrar_autor(cola,pila)
   if cola[:max]==5
     puts 'no hay autores para mostrar'
+  
   else
     print 'Ingrese el nombre del autor: '
     nombre = gets.chomp
@@ -194,6 +199,7 @@ end
 # Lista de autores
 def lista_de_autores(cola,pila)
   if cola[:max]==5
+    
     puts "No se tienen autores registrados"
   else
     tabla = Terminal::Table.new do |t|
@@ -386,22 +392,29 @@ def Reg_New_libro(pila,cola)
 
   end
 
-
 #Menu 3 de Administracion de Libros
+
+
+
 def menuadmin(pila,cola)
     begin
-        puts "\tMenu de Administracion de Libros "
-        puts 'Listado de Opciones '
-        puts '1-Registro de Nuevos Libros'
-        puts '2-Registro de Autores'
-        puts '3-Listado de Libros'
-        puts '4-Listado de Autores'
-        puts '5-Buscar Libro'
-        puts '6-Buscar Autor'
-        puts '7-Salir'
-        print 'Ingrese una opcion: '
+      tabla = Terminal::Table.new do |t|
+        t.title = "Menu de Administracion de Libros "
+        t.headings = ([
+          ['\tListado de Opciones '],
+         ["1-Registro de Nuevos Libros"],
+         ["2-Registro de Autores"],
+         ["3-Listado de Libros"],
+         ["4-Listado de Autores"],
+         ["5-Buscar Libro"],
+         ["6-Buscar Autor"],
+         ["7-Salir"],
+        ])
+        
         #uso de case para crear el menu
-        opciones = gets.chomp
+      end
+      puts tabla
+      opciones = gets.chomp
         limpiar_pantalla
         case opciones
         when '1'
@@ -446,7 +459,8 @@ def menuadmin(pila,cola)
             gets()
             limpiar_pantalla
         else novalido
-        end
+        
+      end
 
     end while (opciones!='7')
 end
@@ -454,13 +468,21 @@ end
 #Menu de 2 Control de Ventas
 def menucontrol()
     begin
-        puts "\t Control de Ventas "
-        puts 'Listado de opciones '
-        puts '1-Registrar una Venta'
-        puts '2-Buscar una Venta'
-        puts '3-Listado de Ventas'
-        puts '4-Salir'
-        print 'Ingrese una opcion: '
+      tabla = Terminal::Table.new do |t|
+        t.title = "Control de Ventas "
+        t.headings = ([
+          ['\tListado de Opciones '],
+         ['1-Registrar una Venta'],
+         ['2-Buscar una Venta'],
+         ['3-Listado de Ventas'],
+         ['4-Salir'],
+         
+        ])
+        
+        #uso de case para crear el menu
+      end
+      puts tabla
+        
         #uso de case para crear el menu
         opciones = gets.chomp
         limpiar_pantalla
@@ -494,12 +516,20 @@ end
 
 #Menu Principal
 begin
-    puts "\tProyecto BookStore "
-    puts 'Opciones de BookStore '
-    puts '1-Administracion de Libros'
-    puts '2-Control de Ventas'
-    puts '3-Salir'
-    print 'Ingrese una opcion: '
+  tabla = Terminal::Table.new do |t|
+    t.title = "Proyecto BookStore "
+    t.headings = ([
+      ['Opciones de BookStore '],
+     [ '1-Administracion de Libros'],
+     ['2-Buscar una Venta'],
+     ['2-Control de Ventas'],
+     ['3-Salir'],
+     
+    ])
+    
+    #uso de case para crear el menu
+  end
+  puts tabla
     opciones = gets.chomp
     #uso de case para crear el menu
     case opciones
